@@ -1,5 +1,7 @@
 from os import system, name
 import math
+import time
+
 
 val = ('0.00')
 r1 = [' . ',' 1 ',' 2 ',' 3 ',' 4 ',' 5 ',' 6 ',' 7 ',
@@ -81,6 +83,13 @@ def return_pi():
 	"""returns pi when called"""
 	return math.pi
 
+def calc_ln(val):
+	"""calculates the natural log of a given param"""
+	try:
+		return math.log(val)
+	except ValueError:
+		return "Math Error"
+
 
 if __name__=='__main__':
 	running = True
@@ -105,16 +114,33 @@ if __name__=='__main__':
 				val = int(val)
 			else:
 				val = float(val)
+
 		while running == True:
 			operator = get_input()
+			clear()
+			display_board(operator)
+			
+			if operator == 'ln':
+				clear()
+				val = calc_ln(val)
+				if val == 'Math Error':
+					display_board(val)
+					time.sleep(2)
+					break
+				display_board(val)
+				continue
+				
+				
+			
 			if operator == 'clr': 
 				clear()
 				break
 			if operator == backslash:
 				clear()
 				break
-			clear()
-			display_board(operator)
+			
+
+			
 			if check_equal(operator):
 				clear()
 				display_board(final_val)
