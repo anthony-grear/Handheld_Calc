@@ -8,7 +8,7 @@ r1 = [' . ',' 1 ',' 2 ',' 3 ',' 4 ',' 5 ',' 6 ',' 7 ',
 		' 8 ',' 9 ',' 0 ',' - ',' = ','   ','   ','   ']
 r2 = ['INV','^.5','x^2','x^y',' x!','E10','log',' ln',
 		' pi', ' + ', ' * ',' / ','clr','   ','   ','   ']
-r3 = ['.','1','2','3','4','5','6','7','8','9','0']
+r3 = ['.','1','2','3','4','5','6','7','8','9','0','-']
 r4 = ['+','-','*','/']
 
 
@@ -84,12 +84,47 @@ def return_pi():
 	return math.pi
 
 def calc_ln(val):
-	"""calculates the natural log of a given param"""
+	"""calculates the natural log of a given value"""
 	try:
 		return math.log(val)
 	except ValueError:
 		return "Math Error"
 
+def calc_log(val):
+	"""calculates the log base 10 of a given value"""
+	try:
+		return math.log10(val)
+	except ValueError:
+		return "Math Error"
+
+def calc_E10(val):
+	"""calculates a value times given power of 10""" 
+	power = int(input("Enter the power of 10: "))
+	return val*10**power
+
+def calc_factorial(val):
+	"""calculates the factorial of an integer"""
+	try:
+		return math.factorial(val)
+	except ValueError:
+		return "Math Error"
+
+def calc_power(val):
+	"""calculates the value to a given power"""
+	power = int(input("Enter the power of 10: "))
+	return val**power
+	 
+def calc_square(val):
+	"""squares a given value"""
+	return val**2
+
+def calc_square_root(val):
+	"""squares a given value"""
+	return val**(0.5)
+
+def calc_inverse(val):
+	"""returns the inverse of a value"""
+	return val**(-1)
 
 if __name__=='__main__':
 	running = True
@@ -120,7 +155,7 @@ if __name__=='__main__':
 			clear()
 			display_board(operator)
 			
-			if operator == 'ln':
+			if operator == 'ln' or operator == 'i':
 				clear()
 				val = calc_ln(val)
 				if val == 'Math Error':
@@ -129,8 +164,58 @@ if __name__=='__main__':
 					break
 				display_board(val)
 				continue
+			
+			if operator == 'log' or operator == 'u':
+				clear()
+				val = calc_log(val)
+				if val == 'Math Error':
+					display_board(val)
+					time.sleep(2)
+					break
+				display_board(val)
+				continue	
+			
+			if operator == 'E10' or operator == 'y':
+				clear()
+				val = calc_E10(val)
+				display_board(val)
+				continue
+
+			if operator == 'x!' or operator == 't':
+				clear()	
 				
-				
+				val = calc_factorial(val)
+				if val == 'Math Error':
+					display_board(val)
+					time.sleep(2)
+					break
+				display_board(val)
+				continue
+
+			if operator == 'x^y' or operator == 'r':
+				clear()	
+				val = calc_power(val)
+				display_board(val)
+				continue
+			
+			if operator == 'x^2' or operator == 'e':
+				clear()
+				val = calc_square(val)
+				display_board(val)
+				continue
+
+			if operator == '^.5' or operator == 'w':
+				clear()
+				val = calc_square_root(val)
+				display_board(val)
+				continue
+
+			if operator == 'INV' or operator == 'q':
+				clear()
+				val = calc_inverse(val)
+				display_board(val)
+				continue		
+
 			
 			if operator == 'clr': 
 				clear()
